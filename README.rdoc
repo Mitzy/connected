@@ -1,3 +1,8 @@
+Connected
+
+Wireless Internet-connected sensor devices for weather data analytics
+
+
 == README
 
 This README would normally document whatever steps are necessary to get the
