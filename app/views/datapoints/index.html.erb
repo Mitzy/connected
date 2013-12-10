@@ -1,0 +1,31 @@
+<h1>Listing datapoints</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Value</th>
+      <th>Property Name</th>
+      <th>Device ID</th>
+      <th>Timestamp</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @datapoints.last(5).each do |datapoint| %>
+      <tr>
+        <td><%= datapoint.value %></td>
+        <td><%= Property.find(datapoint.property_id).name %></td>
+        <td><%= datapoint.device_id %></td>
+        <td><%= datapoint.created_at %></td>
+        <td><%= link_to 'Show', datapoint %></td>
+        <td><%= link_to 'Destroy', datapoint, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Datapoint', new_datapoint_path %>

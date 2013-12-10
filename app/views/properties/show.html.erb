@@ -1,0 +1,64 @@
+
+<p id="notice"><%= notice %></p>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Property details</h3>
+  </div>
+  <div class="panel-body">
+    <p>
+      <strong>Name:</strong>
+      <%= @property.name %>
+    </p>
+
+    <p>
+      <strong>ID:</strong>
+      <%= @property.id %>
+    </p>
+
+    <p>
+      <strong>Device name:</strong>
+      <%= Device.find(@property.device_id).name %>
+    </p>
+
+    <p>
+      <strong>Total datapoints:</strong>
+      <%= @property.datapoints.count %>
+    </p>
+  </div>
+</div>
+
+<%= link_to 'Edit property', edit_property_path(@property), class: "btn btn-default btn-sm" %>
+<%= link_to 'Back', device_path(Device.find(@property.device_id)), class: "btn btn-default btn-sm" %>
+
+<p>
+  <h4>Datapoints (most recent 5 items):</h4>
+  <table class="table">
+  <thead>
+    <tr>
+      <th>Value</th>
+      <th>Timestamp</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+  	<% @property.datapoints.last(5).each do |datapoint| %>
+      <tr>
+        <td><%= datapoint.value %></td>
+        <td><%= datapoint.created_at %></td>
+        <td><%= link_to 'Show', datapoint, class: "btn btn-default btn-xs" %></td>
+        <td><%= link_to 'Destroy', datapoint, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-default btn-xs" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+  </table>
+</p>
+
+<p>
+  <h4>Plot of all datapoints:</h4>
+</p>
+
+<div id='chart'></div>
+<%= render_chart(@chart, 'chart') %>

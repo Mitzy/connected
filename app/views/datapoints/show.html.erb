@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Datapoint details</h3>
+  </div>
+  <div class="panel-body">
+	<p>
+	  <strong>Property name:</strong>
+	  <%= @datapoint.property.name %>
+	</p>
+
+	<p>
+	  <strong>Device name:</strong>
+	  <%= @datapoint.device.name %>
+	</p>
+
+	<p>
+	  <strong>Value:</strong>
+	  <%= @datapoint.value %>
+	</p>
+  </div>
+</div>
+
+<%= link_to 'Back', property_path(@datapoint.property), class: "btn btn-default btn-sm" %>
